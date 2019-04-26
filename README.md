@@ -1,52 +1,32 @@
 
-## Projeto PHP simples de login utilizando cookies
+# Projeto PHP simples de login utilizando cookies
 
-
-
-### Instruções
+## InstruÃ§Ãµes
 
 > Banco de dados
 
 * Crie um schema chamado db_cookie_project no seu MySQL:
 
-```
+```bash
 CREATE DATABASE IF NOT EXISTS db_cookie_project;
 ```
 
 * ou rode via terminal:
 
-```
+```bash
 mysql -u [mysql_user] -p[mysql_password] -h [mysql_host] -e "CREATE DATABASE IF NOT EXISTS db_cookie_project;"
 ```
 
-
 * Rode o arquivo queries.sql via linha de comando:
 
-```
+```bash
 mysql -u [mysql_user] -p[mysql_password] -h [mysql_host] db_cookie_project < queries.sql
 ```
 
+> AplicaÃ§Ã£o
 
-> Aplicação
+* Coloque este projeto para rodar em algum servidor como apache, ou com o prÃ³prio servidor embutido do PHP a partir deste diretÃ³rio:
 
-* Coloque este projeto para rodar em algum servidor como apache, ou com o próprio servidor embutido do PHP a partir deste diretório:
-
-```
+```bash
 php -S 0.0.0.0:80
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

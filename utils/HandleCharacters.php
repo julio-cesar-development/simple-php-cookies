@@ -11,6 +11,7 @@
     }
 
     function ant_sql_pass($sql) {
+      $sql = preg_replace('/\s+/i', '', $sql);
       $sql = preg_replace('/(from|select|insert|delete|where|drop|alter|alter table|drop table|show tables)+/i', '', $sql);
       $sql = trim($sql);
       $sql = strip_tags($sql);
@@ -19,7 +20,6 @@
     }
 
     function replace_characters($str){
-      $str = str_replace('ã', '&atilde;', $str);
       $str = str_replace('ã', '&atilde;', $str);
       $str = str_replace('õ', '&otilde;', $str);
       $str = str_replace('ç', '&ccedil;', $str);

@@ -1,3 +1,5 @@
+CREATE DATABASE IF NOT EXISTS db_cookie_project;
+
 USE db_cookie_project;
 
 DROP TABLE IF EXISTS User;

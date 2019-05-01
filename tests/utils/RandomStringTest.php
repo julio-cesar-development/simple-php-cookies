@@ -8,13 +8,14 @@ final class RandomStringTest extends TestCase
 {
   /**
    * @test
-   * @group characters
+   * @group string
    */
-  public function SqlWorks(): void
+  public function SizeOfString(): void
   {
-    $this->assertEquals(
-      '()test',
-      HandleCharacters::ant_sql('select * from ? ; +-#$@%&*!()test')
+    $size = 20;
+    $this->assertSame(
+      $size,
+      strlen(RandomString::generate($size))
     );
   }
 
@@ -25,5 +26,5 @@ final class RandomStringTest extends TestCase
 
 // vendor\bin\phpunit.bat --bootstrap vendor\autoload.php --testdox tests\
 
-// vendor\bin\phpunit.bat --bootstrap vendor\autoload.php tests\ --group characters
-// vendor\bin\phpunit.bat --bootstrap vendor\autoload.php --testdox tests\ --group characters
+// vendor\bin\phpunit.bat --bootstrap vendor\autoload.php tests\ --group string
+// vendor\bin\phpunit.bat --bootstrap vendor\autoload.php --testdox tests\ --group string

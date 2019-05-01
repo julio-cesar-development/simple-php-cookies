@@ -1,5 +1,5 @@
 
-# Simple PHP login project using cookies
+# Simple PHP login project using cookies, and unit tests with PHP Unit
 
 ## Instructions
 

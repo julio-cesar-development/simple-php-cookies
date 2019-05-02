@@ -35,29 +35,13 @@ RUN cd /var/www/html/
 
 RUN composer install
 
-ENV APACHE_RUN_USER www-data
-ENV APACHE_RUN_GROUP www-data
-ENV APACHE_LOG_DIR /var/log/apache2
-ENV APACHE_PID_FILE /var/run/apache2/apache2.pid
-ENV APACHE_RUN_DIR /var/run/apache2
-ENV APACHE_LOCK_DIR /var/lock/apache2
-ENV APACHE_LOG_DIR /var/log/apache2
-
-RUN mkdir -p $APACHE_RUN_DIR
-RUN mkdir -p $APACHE_LOCK_DIR
-RUN mkdir -p $APACHE_LOG_DIR
-
-# RUN rm /var/www/html/index.html
-RUN chown -R $APACHE_RUN_USER:$APACHE_RUN_USER /var/www/html/
-
-EXPOSE 80
-CMD ["apache2", "-DFOREGROUND"]
+CMD ["./vendor/bin/phpunit", "--bootstrap", "vendor/autoload.php", "--testdox", "tests/"]
 
 # build this image
-# docker image build -f Dockerfile -t app-login .
+# docker image build -f Dockerfile-test -t app-login-test .
 
 # run this image with a container
-# docker container run --name app-login -p 80:80 app-login
-# docker container run -it --name app-login -p 80:80 app-login bash
+# docker container run --name app-login-test -p 80:80 app-login-test
+# docker container run -it --name app-login-test -p 80:80 app-login-test bash
 
 # ls -lt /var/www/html/

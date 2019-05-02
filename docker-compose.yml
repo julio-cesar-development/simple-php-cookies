@@ -10,6 +10,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: db_cookie_project
+      MYSQL_USER: root
+      MYSQL_PASSWORD: admin
     volumes:
       - mysql-db:/var/lib/mysql
       - ./queries.sql:/docker-entrypoint-initdb.d/data.sql
@@ -25,7 +27,11 @@ services:
       - db
     environment:
       DB_HOST: db
-      API_PORT: 80
+      DB_DATABASE: db_cookie_project
+      DB_USER: root
+      DB_PASSWORD: admin
+    links:
+     - db
 
 volumes:
   mysql-db:

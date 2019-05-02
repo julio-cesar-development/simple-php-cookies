@@ -1,7 +1,19 @@
 
 # Simple PHP login project using cookies, and unit tests with PHP Unit
 
+[![Build Status](https://travis-ci.org/julio-cesar-development/simple-php-cookies.svg?branch=master)](https://travis-ci.org/julio-cesar-development/simple-php-cookies)
+
 ## Instructions
+
+### Running with docker
+
+> Daemon mode
+
+```bash
+docker-compose up -d
+```
+
+### Running appart
 
 > Database
 

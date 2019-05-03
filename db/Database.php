@@ -2,20 +2,20 @@
   class Database {
     private $host;
     private $db_name;
-    private $username = 'root';
-    private $password = 'admin';
+    private $username;
+    private $password;
     private $conn;
 
-    public function connect () {
-      $this->conn = null;
-      $this->host = !empty(getenv('DB_HOST')) ? getenv('DB_HOST') : 'localhost';
-      $this->db_name = !empty(getenv('DB_DATABASE')) ? getenv('DB_DATABASE') : 'db_cookie_project';
+    public function connect() {
+      $this->host = getenv('DB_HOST') ? getenv('DB_HOST') : '127.0.0.1';
+      $this->db_name = getenv('DB_DATABASE') ? getenv('DB_DATABASE') : 'db_cookie_project';
+      $this->username = getenv('DB_USER') ? getenv('DB_USER') : 'root';
+      $this->password = getenv('DB_PASSWORD') ? getenv('DB_PASSWORD') : 'admin';
 
-      try{
-        // mysql: host='host'; dbname='dbname', 'username', 'password'
-        $this->conn = new PDO('mysql: host='.$this->host.'; dbname='.$this->db_name.'', ''.$this->username.'', ''.$this->password);
-        $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      }catch (PODException $err){
+      try {
+        $dsn = "mysql:host=$this->host;dbname=$this->db_name";
+        $this->conn = new PDO($dsn, $this->username, $this->password);
+      } catch(PODException $err) {
         echo 'Connection Error: '.$err->GetMessage();
       }
       return $this->conn;

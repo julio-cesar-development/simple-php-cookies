@@ -25,14 +25,11 @@ RUN a2enmod php7.2 && a2enmod rewrite && a2dismod mpm_event && a2enmod mpm_prefo
 # RUN phpenmod mbstring zip curl json memcached
 RUN for file in $(ls /etc/php/7.2/mods-available/); do phpenmod "$(echo $file |cut -d'.' -f1)"; done
 
-WORKDIR /var/www/html/
 COPY . /var/www/html/
+RUN cd /var/www/html/
 
 RUN curl -s https://getcomposer.org/installer | php && \
     chmod +x composer.phar && mv composer.phar /usr/local/bin/composer
-
-RUN cd /var/www/html/
-
 RUN composer install
 
 ENV APACHE_RUN_USER www-data

@@ -7,10 +7,18 @@
 
 ### Running with docker
 
-> Daemon mode
-
 ```bash
+# it'll just start all services
+docker-compose up
+
+# it'll start all services in daemon mode
 docker-compose up -d
+
+# it'll build and start all services
+docker-compose up --build
+
+# it'll build and start all services in daemon mode
+docker-compose up -d --build
 ```
 
 ### Running appart

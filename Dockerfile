@@ -27,6 +27,8 @@ RUN for file in $(ls /etc/php/7.2/mods-available/); do phpenmod "$(echo $file |c
 WORKDIR /var/www/html/
 COPY . /var/www/html/
 
+RUN mv /var/www/html/000-default.conf /etc/apache2/sites-enabled/000-default.conf
+
 RUN curl -s https://getcomposer.org/installer | php && \
     chmod +x composer.phar && \
     mv composer.phar /usr/local/bin/composer

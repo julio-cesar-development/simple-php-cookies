@@ -42,11 +42,3 @@ final class HandleCharactersTest extends TestCase
     );
   }
 }
-
-// vendor\bin\phpunit.bat --bootstrap vendor\autoload.php tests\utils\HandleCharactersTest.php
-// vendor\bin\phpunit.bat --bootstrap vendor\autoload.php --testdox tests\utils\HandleCharactersTest.php
-
-// vendor\bin\phpunit.bat --bootstrap vendor\autoload.php --testdox tests\
-
-// vendor\bin\phpunit.bat --bootstrap vendor\autoload.php tests\ --group characters
-// vendor\bin\phpunit.bat --bootstrap vendor\autoload.php --testdox tests\ --group characters

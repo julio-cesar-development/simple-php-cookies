@@ -1,13 +1,13 @@
 <?php
   class HandleTimes {
-    function time_to_sec($time) {
+    public function time_to_sec($time) {
       $hours = substr($time, 0, -6);
       $minutes = substr($time, -5, 2);
       $seconds = substr($time, -2);
       return $hours * 3600 + $minutes * 60 + $seconds;
     }
 
-    function sec_to_time($seconds) {
+    public function sec_to_time($seconds) {
       if ($seconds < 0) {
         $seconds = $seconds * -1;
       }
@@ -17,7 +17,7 @@
       return sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
     }
 
-    function data_to_timestamp($data) {
+    public function data_to_timestamp($data) {
       $dia = date('Y-m-d', strtotime($data));
       $dia = explode('-', ($dia));
       $hora = date('H:i:s', strtotime($data));

@@ -18,13 +18,5 @@ final class RandomStringTest extends TestCase
       strlen(RandomString::generate($size))
     );
   }
-
 }
 
-// vendor\bin\phpunit.bat --bootstrap vendor\autoload.php tests\utils\RandomStringTest.php
-// vendor\bin\phpunit.bat --bootstrap vendor\autoload.php --testdox tests\utils\RandomStringTest.php
-
-// vendor\bin\phpunit.bat --bootstrap vendor\autoload.php --testdox tests\
-
-// vendor\bin\phpunit.bat --bootstrap vendor\autoload.php tests\ --group string
-// vendor\bin\phpunit.bat --bootstrap vendor\autoload.php --testdox tests\ --group string

@@ -1,6 +1,6 @@
 <?php
   Class HandleCharacters {
-    function ant_sql($sql) {
+    public function ant_sql($sql) {
       $sql = strToLower($sql);
       $sql = preg_replace('/[^(a-z|0-9|\s|_)]+/i', '', $sql);
       $sql = preg_replace('/(from|select|insert|delete|where|drop|alter|alter table|drop table|show tables)+/i', '', $sql);
@@ -10,7 +10,7 @@
       return $sql;
     }
 
-    function ant_sql_pass($sql) {
+    public function ant_sql_pass($sql) {
       $sql = preg_replace('/\s+/i', '', $sql);
       $sql = preg_replace('/(from|select|insert|delete|where|drop|alter|alter table|drop table|show tables)+/i', '', $sql);
       $sql = trim($sql);
@@ -19,7 +19,7 @@
       return $sql;
     }
 
-    function replace_characters($str){
+    public function replace_characters($str){
       $str = str_replace('ã', '&atilde;', $str);
       $str = str_replace('õ', '&otilde;', $str);
       $str = str_replace('ç', '&ccedil;', $str);

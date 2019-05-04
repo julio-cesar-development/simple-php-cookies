@@ -1,6 +1,6 @@
 <?php
   class RandomString {
-    function generate($size){
+    public function generate($size){
       $stringCodes = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+@&%(){}[]';
       $stringReturn= '';
       for ($count = 0; $size > $count; $count ++) {

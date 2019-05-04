@@ -50,3 +50,11 @@ mysql -u [mysql_user] -p[mysql_password] -h [mysql_host] db_cookie_project < que
 ```bash
 php -S 0.0.0.0:80
 ```
+
+## Authors
+
+* **Julio Cesar** - *Initial work*
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

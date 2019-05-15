@@ -8,6 +8,8 @@
 
 ### Running with docker
 
+> Run the application
+
 ```bash
 # it'll just start all services
 docker-compose up
@@ -20,6 +22,17 @@ docker-compose up --build
 
 # it'll build and start all services in daemon mode
 docker-compose up -d --build
+```
+
+> Tests
+
+```bash
+# it'll build the image and after run the test container
+docker image build -f \
+  Dockerfile-test -t \
+  app-login-test . && \
+  docker container run \
+  --rm app-login-test
 ```
 
 ### Running appart
@@ -50,6 +63,20 @@ mysql -u [mysql_user] -p[mysql_password] -h [mysql_host] db_cookie_project < que
 
 ```bash
 php -S 0.0.0.0:80
+```
+
+> Tests
+
+* For tests is required the following command to install the dependencies
+
+```bash
+composer install
+```
+
+* Then you can run the tests
+
+```bash
+./vendor/bin/phpunit --bootstrap vendor/autoload.php --testdox tests/
 ```
 
 ## Authors

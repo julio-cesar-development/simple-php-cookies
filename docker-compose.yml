@@ -14,7 +14,8 @@ services:
       MYSQL_PASSWORD: admin
     volumes:
       - mysql-db:/var/lib/mysql
-      - ./queries.sql:/docker-entrypoint-initdb.d/data.sql
+      # - ./queries.sql:/docker-entrypoint-initdb.d/data.sql
+      
   app:
     container_name: app
     build:
@@ -30,6 +31,25 @@ services:
       DB_DATABASE: db_cookie_project
       DB_USER: root
       DB_PASSWORD: admin
+    links:
+     - db
+
+  migrations:
+    container_name: migrations
+    build:
+      context: .
+      dockerfile: Dockerfile-migrations
+      args:
+        - DB_HOST=db
+        - DB_DATABASE=db_cookie_project
+        - DB_USER=root
+        - DB_PASSWORD=admin
+    restart: "no"
+    depends_on:
+      - db
+    volumes:
+      - /migrations/node_modules
+      - ./migrations:/migrations
     links:
      - db
 

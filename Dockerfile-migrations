@@ -1,0 +1,47 @@
+FROM ubuntu:18.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+ENV TZ=America/Sao_Paulo
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+RUN apt-get update -qq && \
+    apt-get install -y -qq \
+    tzdata \
+    apt-transport-https \
+    ca-certificates \
+    curl apt-utils git wget zip \
+    gnupg-agent \
+    software-properties-common \
+    inetutils-ping \
+    vim
+
+RUN apt-get install -y -qq mysql-client
+
+ARG DB_HOST
+ARG DB_DATABASE
+ARG DB_USER
+ARG DB_PASSWORD
+
+COPY ./migrations/ /migrations/
+
+WORKDIR /migrations/
+RUN cd /migrations/
+RUN curl -sL https://deb.nodesource.com/setup_9.x | apt-get install -y -qq nodejs \
+  && apt-get install -y -qq npm \
+  && apt-get update -qq
+
+# RUN npm install
+RUN chmod +x ./run.sh
+RUN bash ./run.sh ${DB_USER} ${DB_PASSWORD} ${DB_HOST} ${DB_DATABASE}
+
+# Build this image
+# docker image build -f Dockerfile -t migrations .
+
+# Run this image
+# docker container run --name migrations migrations
+# docker container run -it --name migrations migrations bash
+
+# docker-compose run migrations bash
+
+# ls -lt /var/www/html/

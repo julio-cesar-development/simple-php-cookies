@@ -1,0 +1,17 @@
+{
+  "name": "knex-migrations",
+  "version": "1.0.0",
+  "description": "knex migrations",
+  "main": "index.js",
+  "scripts": {
+    "knex": "./node_modules/knex/bin/cli.js",
+    "test": "echo ok && exit 0"
+  },
+  "keywords": [],
+  "author": "Julio Cesar <julio@blackdevs.com.br>",
+  "license": "MIT",
+  "dependencies": {
+    "knex": "^0.16.3",
+    "mysql": "^2.16.0"
+  }
+}

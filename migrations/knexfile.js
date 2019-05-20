@@ -1,5 +1,10 @@
 const process = require('process');
 
+console.log('process.env.DB_HOST', process.env.DB_HOST);
+console.log('process.env.DB_DATABASE', process.env.DB_DATABASE);
+console.log('process.env.DB_USER', process.env.DB_USER);
+console.log('process.env.DB_PASSWORD', process.env.DB_PASSWORD);
+
 module.exports = {
   client: 'mysql',
   connection: {

@@ -13,7 +13,8 @@ RUN apt-get update -qq && \
     curl apt-utils git wget zip \
     gnupg-agent \
     software-properties-common \
-    vim
+    vim \
+    netcat
 
 RUN apt-get install -y -qq apache2
 
@@ -38,10 +39,8 @@ RUN composer install
 CMD ["./vendor/bin/phpunit", "--bootstrap", "vendor/autoload.php", "--testdox", "tests/"]
 
 # Build this image
-# docker image build -f Dockerfile-test -t app-login-test .
+# docker image build -f Dockerfile-test -t test .
 
 # Run this image
-# docker container run --name app-login-test -p 80:80 app-login-test
-# docker container run -it --name app-login-test -p 80:80 app-login-test bash
-
-# ls -lt /var/www/html/
+# docker container run --name test test
+# docker container run -it --name test test bash

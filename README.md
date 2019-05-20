@@ -11,29 +11,56 @@
 > Run the application
 
 ```bash
-# it'll just start all services
-docker-compose up
+# start db and app
+docker-compose up db app
 
-# it'll start all services in daemon mode
-docker-compose up -d
+# start db and app in daemon mode
+docker-compose up -d db app
 
-# it'll build and start all services
-docker-compose up --build
+# build and start db and app
+docker-compose up --build db app
 
-# it'll build and start all services in daemon mode
-docker-compose up -d --build
+# build and start db and app in daemon mode
+docker-compose up -d --build db app
+```
+
+> Migrations
+
+```bash
+# with docker-compose
+docker-compose up migrations
+
+# build the migrations image and run the migrations container
+docker image build \
+  -f Dockerfile-migrations \
+  -t app-migrations \
+  --build-arg DB_HOST=db \
+  --build-arg DB_DATABASE=db_cookie_project \
+  --build-arg DB_USER=root \
+  --build-arg DB_PASSWORD=admin \
+  . && \
+  docker container run \
+  --rm \
+  -v /migrations/node_modules \
+  -v ./migrations:/migrations \
+  app-migrations
 ```
 
 > Tests
 
 ```bash
-# it'll build the image and after run the test container
+# with docker-compose
+docker-compose up test
+
+# build the test image and run the test container
 docker image build -f \
   Dockerfile-test -t \
-  app-login-test . && \
+  app-test . && \
   docker container run \
-  --rm app-login-test
+  --rm app-test
 ```
+
+-----------------
 
 ### Running appart
 

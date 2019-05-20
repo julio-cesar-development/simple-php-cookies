@@ -14,7 +14,8 @@ RUN apt-get update -qq && \
     gnupg-agent \
     software-properties-common \
     inetutils-ping \
-    vim
+    vim \
+    netcat
 
 RUN apt-get install -y -qq mysql-client
 
@@ -36,12 +37,10 @@ RUN chmod +x ./run.sh
 RUN bash ./run.sh ${DB_USER} ${DB_PASSWORD} ${DB_HOST} ${DB_DATABASE}
 
 # Build this image
-# docker image build -f Dockerfile -t migrations .
+# docker image build -f Dockerfile-migrations -t migrations .
 
 # Run this image
 # docker container run --name migrations migrations
-# docker container run -it --name migrations migrations bash
+# docker container run -it --name migrations migrations bashapp-
 
 # docker-compose run migrations bash
-
-# ls -lt /var/www/html/

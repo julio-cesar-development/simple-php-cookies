@@ -14,7 +14,8 @@ RUN apt-get update -qq && \
     gnupg-agent \
     software-properties-common \
     inetutils-ping \
-    vim
+    vim \
+    netcat
 
 RUN apt-get install -y -qq apache2
 
@@ -57,10 +58,8 @@ EXPOSE 80
 CMD ["apache2", "-DFOREGROUND"]
 
 # Build this image
-# docker image build -f Dockerfile -t app-login .
+# docker image build -f Dockerfile -t app .
 
 # Run this image
-# docker container run --name app-login -p 80:80 app-login
-# docker container run -it --name app-login -p 80:80 app-login bash
-
-# ls -lt /var/www/html/
+# docker container run --name app -p 80:80 app
+# docker container run -it --name app -p 80:80 app bash

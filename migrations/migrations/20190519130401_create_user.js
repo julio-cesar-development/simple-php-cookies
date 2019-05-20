@@ -9,22 +9,8 @@ exports.up = function(knex, Promise) {
     table.string('password', 255).notNullable();
     table.string('hash', 255);
   })
-    .then((data) => {
-      const [OkPacket] = data;
-      console.log('affectedRows => ', OkPacket.affectedRows);
-    })
-    .catch((err) => {
-      console.log(err)
-    });
 };
 
 exports.down = function(knex, Promise) {
   return knex.schema.withSchema(schema).dropTable('User')
-    .then((data) => {
-      const [OkPacket] = data;
-      console.log('affectedRows => ', OkPacket.affectedRows);
-    })
-    .catch((err) => {
-      console.log(err)
-    });
 };

@@ -33,10 +33,10 @@ RUN curl -sL https://deb.nodesource.com/setup_9.x | apt-get install -y -qq nodej
   && apt-get update -qq
 
 RUN npm install
-RUN chmod +x ./run.sh
+RUN chmod +x /migrations/run.sh
 
-# ENTRYPOINT [ "/bin/bash", "-x", "./run.sh", "$DB_USER", "$DB_PASSWORD", "$DB_HOST", "$DB_DATABASE" ]
-ENTRYPOINT [ "/bin/bash", "-x", "./run.sh", "root", "admin", "db", "db_cookie_project"]
+# ENTRYPOINT [ "/bin/bash", "-x", "/migrations/run.sh", "$DB_USER", "$DB_PASSWORD", "$DB_HOST", "$DB_DATABASE" ]
+ENTRYPOINT [ "/bin/bash", "-x", "/migrations/run.sh", "root", "admin", "db", "db_cookie_project"]
 
 # Build this image
 # docker image build -f Dockerfile-migrations -t migrations .

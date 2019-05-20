@@ -33,7 +33,7 @@ docker-compose up migrations
 # build the migrations image and run the migrations container
 docker image build \
   -f Dockerfile-migrations \
-  -t app-migrations \
+  -t migrations \
   --build-arg DB_HOST=db \
   --build-arg DB_DATABASE=db_cookie_project \
   --build-arg DB_USER=root \
@@ -41,9 +41,9 @@ docker image build \
   . && \
   docker container run \
   --rm \
-  -v /migrations/node_modules \
-  -v ./migrations:/migrations \
-  app-migrations
+  -v $(pwd)/migrations/node_modules \
+  -v $(pwd)/migrations:/migrations \
+  migrations
 ```
 
 > Tests
@@ -53,11 +53,13 @@ docker image build \
 docker-compose up test
 
 # build the test image and run the test container
-docker image build -f \
-  Dockerfile-test -t \
-  app-test . && \
+docker image build \
+  -f Dockerfile-test \
+  -t test \
+  . && \
   docker container run \
-  --rm app-test
+  --rm \
+  test
 ```
 
 -----------------

@@ -34,7 +34,7 @@ services:
       DB_USER: root
       DB_PASSWORD: admin
     links:
-     - db
+      - db
     networks:
       - netlocal
     healthcheck:
@@ -57,10 +57,10 @@ services:
     depends_on:
       - db
     volumes:
-      - /migrations/node_modules
+      - ./migrations/node_modules
       - ./migrations:/migrations
     links:
-     - db
+      - db
     networks:
       - netlocal
 
@@ -75,6 +75,7 @@ services:
 
 # volumes:
 #   mysql-db:
+
 networks:
   netlocal:
     driver: bridge

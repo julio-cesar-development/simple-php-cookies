@@ -1,7 +1,8 @@
 
 # Simple PHP login project using cookies, and unit tests with PHP Unit
 
-[![Build Status](https://badgen.net/travis/julio-cesar-development/simple-php-cookies?icon=travis&color=green)](https://travis-ci.org/julio-cesar-development/simple-php-cookies)
+[![Build Status](https://badgen.net/travis/julio-cesar-development/simple-php-cookies?icon=travis)](https://travis-ci.org/julio-cesar-development/simple-php-cookies)
+![License](https://badgen.net/badge/license/MIT/blue)
 [![GitHub Status](https://badgen.net/github/status/julio-cesar-development/simple-php-cookies)](https://github.com/julio-cesar-development/simple-php-cookies)
 
 ## Instructions

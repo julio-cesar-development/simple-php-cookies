@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+  backupGlobals="true"
+  backupStaticAttributes="false"
+  colors="true"
+  verbose="true"
+  bootstrap="./vendor/autoload.php"
+>
+  <testsuite name="Test Suite">
+    <directory suffix=".php">tests</directory>
+  </testsuite>
+
+  <logging>
+    <log type="junit" target="./log/logfile.xml"/>
+    <log type="testdox-html" target="./log/testdox.html"/>
+    <log type="testdox-text" target="./log/testdox.txt"/>
+  </logging>
+</phpunit>

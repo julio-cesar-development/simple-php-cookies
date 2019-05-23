@@ -4,6 +4,8 @@ set -e
 
 echo $*
 
+cd /migrations
+
 echo "CREATE SCHEMA IF NOT EXISTS ${4}"
 mysql -u ${1} -p${2} -h ${3} -e "CREATE SCHEMA IF NOT EXISTS ${4}" 1> /dev/null 2>&1
 

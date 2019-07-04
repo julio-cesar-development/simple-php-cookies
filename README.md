@@ -42,8 +42,8 @@ docker image build \
   . && \
   docker container run \
   --rm \
-  -v $(pwd)/migrations/node_modules \
-  -v $(pwd)/migrations:/migrations \
+  -v ${PWD}/migrations/node_modules \
+  -v ${PWD}/migrations:/migrations \
   migrations
 ```
 

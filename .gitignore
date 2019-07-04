@@ -4,3 +4,6 @@ node_modules
 package-lock.json
 migrations/.v8flags*
 Dockerfile-ubuntu-base
+Dockerfile-apache-php-base
+Dockerfile-node-base
+.env

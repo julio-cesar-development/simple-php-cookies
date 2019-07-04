@@ -8,10 +8,10 @@ services:
       - 3306:3306
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: db_cookie_project
-      MYSQL_USER: root
-      MYSQL_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-admin}
+      MYSQL_DATABASE: ${DB_DATABASE:-db_cookie_project}
+      MYSQL_USER: ${DB_USER:-root}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-admin}
     networks:
       - netlocal
     # volumes:
@@ -29,10 +29,10 @@ services:
     depends_on:
       - db
     environment:
-      DB_HOST: db
-      DB_DATABASE: db_cookie_project
-      DB_USER: root
-      DB_PASSWORD: admin
+      DB_HOST: ${DB_HOST:-db}
+      DB_DATABASE: ${DB_DATABASE:-db_cookie_project}
+      DB_USER: ${DB_USER:-root}
+      DB_PASSWORD: ${DB_PASSWORD:-admin}
     links:
       - db
     networks:
@@ -48,21 +48,16 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-migrations
-      args:
-        - DB_HOST=db
-        - DB_DATABASE=db_cookie_project
-        - DB_USER=root
-        - DB_PASSWORD=admin
     restart: "no"
     depends_on:
       - db
-    # environment:
-    #   DB_HOST: ${DB_HOST}
-    #   DB_DATABASE: ${DB_DATABASE}
-    #   DB_USER: ${DB_USER}
-    #   DB_PASSWORD: ${DB_PASSWORD}
+    environment:
+      DB_HOST: ${DB_HOST:-db}
+      DB_DATABASE: ${DB_DATABASE:-db_cookie_project}
+      DB_USER: ${DB_USER:-root}
+      DB_PASSWORD: ${DB_PASSWORD:-admin}
     volumes:
-      - ./migrations/node_modules
+      - /migrations/node_modules
       - ./migrations:/migrations
     links:
       - db

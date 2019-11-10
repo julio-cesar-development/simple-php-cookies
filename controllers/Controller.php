@@ -14,13 +14,13 @@
     public $randomString;
     public $handleHeader;
     public $data;
-    public $valueCookieExploded;
+    public $cookie_parts;
     public $user_codigo;
     public $user_username;
     public $user_password;
     public $user_hash;
-    public $timestampCookie;
-    public $timestampNow;
+    public $timestamp_cookie;
+    public $timestamp_now;
 
     public function __construct($db){
       $this->db = $db;
@@ -35,15 +35,15 @@
     public function validate(){
       $this->isValid = false;
 
-      $this->data = date('Y-m-d H:i:s');
-      $this->valueCookieExploded = explode('-', $_COOKIE['blackdevs-cookie']);
+      $this->date = date('Y-m-d H:i:s');
+      $this->cookie_parts = explode('-', $_COOKIE['blackdevs-cookie']);
 
       // cookie parts handling
-      $this->user_username = $this->valueCookieExploded[0];
-      $this->user_password = $this->valueCookieExploded[1];
-      $this->user_hash = $this->valueCookieExploded[2];
-      $this->timestampCookie = (int) $this->valueCookieExploded[3] + (24 * 3600); // 24 hours of validity (24 * 3600)
-      $this->user_codigo = $this->valueCookieExploded[4];
+      $this->user_username = $this->cookie_parts[0];
+      $this->user_password = $this->cookie_parts[1];
+      $this->user_hash = $this->cookie_parts[2];
+      $this->timestamp_cookie = (int) $this->cookie_parts[3] + (24 * 3600); // 24 hours of validity (24 * 3600)
+      $this->user_codigo = $this->cookie_parts[4];
 
       // setting user attributes
       $this->user->codigo = $this->user_codigo;
@@ -53,8 +53,8 @@
       $result = $this->user->get_user();
 
       if($result && sizeof($result) > 0 && $result['password'] === $this->user_password && $result['hash'] === $this->user_hash){
-        $this->timestampNow = $this->handleTimes->data_to_timestamp($this->data);
-        if($this->timestampNow < $this->timestampCookie){
+        $this->timestamp_now = $this->handleTimes->date_to_timestamp($this->date);
+        if($this->timestamp_now < $this->timestamp_cookie){
           $this->isValid = true;
         }else{
           $this->logout();

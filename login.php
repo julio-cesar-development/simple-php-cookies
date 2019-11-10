@@ -7,31 +7,32 @@ $db = $database->connect();
 $controller = new Controller($db);
 
 if ($_POST) {
-  if ($_POST['txt_nome'] && $_POST['txt_senha']) {
-    $post_user = $_POST['txt_nome'];
-    $post_pass = $_POST['txt_senha'];
-    $post_salvar = isset($_POST['txt_salvar']) ? $_POST['txt_salvar'] : 0;
+  if ($_POST['username'] && $_POST['password']) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $remember = isset($_POST['remember']) ? $_POST['remember'] : 0;
 
-    if (preg_match('/[^(a-z|0-9|_)]+/i', $post_user)) {
+    if (preg_match('/[^(a-z|0-9|_)]+/i', $username)) {
       $controller->handleHeader->unauthorized();
     } else {
-      $post_user = $controller->handleCharacters->ant_sql($_POST['txt_nome']);
-      $post_pass = md5($controller->handleCharacters->ant_sql_pass($_POST['txt_senha']));
-      $controller->user->username = $post_user;
+      $username = $controller->handleCharacters->ant_sql($username);
+      $password = md5($controller->handleCharacters->ant_sql_pass($password));
+      $controller->user->username = $username;
       $result = $controller->user->get_user();
 
-      if ($result && sizeof($result) > 0 && $result['password'] === $post_pass && $result['codigo'] != null) {
+      if ($result && sizeof($result) > 0 && $result['password'] === $password
+        && $result['codigo'] != null) {
         $controller->user->codigo = $result['codigo'];
         $domain = ($_SERVER['HTTP_HOST'] != 'localhost') ? $_SERVER['HTTP_HOST'] : false;
         $ip = ($_SERVER['REMOTE_ADDR']);
-        $data = date('Y-m-d H:i:s');
+        $date = date('Y-m-d H:i:s');
         $hash = $controller->randomString->generate(30);
-        $token = $post_user . '-' . $post_pass . '-' . $hash . '-' . $controller->handleTimes->data_to_timestamp($data) . '-' . $controller->user->codigo;
+        $token = $username . '-' . $password . '-' . $hash . '-' . $controller->handleTimes->date_to_timestamp($date) . '-' . $controller->user->codigo;
         $controller->user->hash = $hash;
         $puthash = $controller->user->put_userhash();
 
         if ($puthash && $puthash->rowCount() > 0) {
-          if ($post_salvar == 1) {
+          if ($remember == 1) {
             setcookie('blackdevs-cookie', $token, time() + (24 * 3600)); // 24 hours of validity (24 * 3600)
           } else {
             setcookie('blackdevs-cookie', $token); // until the end of session
@@ -66,7 +67,7 @@ if ($_POST) {
               Login:
             </td>
             <td width="50%" height="25">
-              <input type="text" name="txt_nome" value="<?= isset($_POST['txt_nome']) ? $_POST['txt_nome'] : '' ?>" size="12" width="100%" />
+              <input type="text" name="username" value="<?= isset($_POST['username']) ? $_POST['username'] : '' ?>" size="12" width="100%" />
             </td>
           </tr>
           <tr>
@@ -74,13 +75,13 @@ if ($_POST) {
               Senha:
             </td>
             <td width="50%" height="25">
-              <input type="password" name="txt_senha" size="12" value="<?= isset($_POST['txt_senha']) ? $_POST['txt_senha'] : '' ?>" width='100%' />
+              <input type="password" name="password" size="12" value="<?= isset($_POST['password']) ? $_POST['password'] : '' ?>" width='100%' />
             </td>
           </tr>
           <tr>
             <td width="100%" height="25" colspan="2">
               <center>
-                <input type="checkbox" name="txt_salvar" value="1" checked />Salvar cookie
+                <input type="checkbox" name="remember" value="1" checked />Salvar cookie
               </center>
             </td>
           </tr>

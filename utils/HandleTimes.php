@@ -17,7 +17,7 @@
       return sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
     }
 
-    public function data_to_timestamp($data) {
+    public function date_to_timestamp($data) {
       $dia = date('Y-m-d', strtotime($data));
       $dia = explode('-', ($dia));
       $hora = date('H:i:s', strtotime($data));

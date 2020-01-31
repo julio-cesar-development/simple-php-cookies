@@ -1,10 +1,10 @@
 FROM juliocesarmidia/apache_php_base:v18.04
 LABEL maintainer="julio@blackdevs.com.br"
 
+RUN apt-get update && apt-get install netcat -y && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /var/www/html/
 COPY . /var/www/html/
-
-RUN mv /var/www/html/000-default.conf /etc/apache2/sites-enabled/000-default.conf
 
 RUN composer install
 

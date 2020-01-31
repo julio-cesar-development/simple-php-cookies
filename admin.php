@@ -24,10 +24,10 @@ if (isset($_COOKIE['blackdevs-cookie'])) {
           <hr>
           <h4>Tempo</h4>
           <div>
-            Corrente&nbsp;|&nbsp;<?php echo $controller->timestampNow; ?>
+            Corrente&nbsp;|&nbsp;<?php echo $controller->timestamp_now; ?>
           </div>
           <div>
-            Expira&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;<?php echo $controller->timestampCookie; ?>
+            Expira&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;<?php echo $controller->timestamp_cookie; ?>
           </div>
           <br/><br/>
           <hr>
@@ -50,7 +50,7 @@ if (isset($_COOKIE['blackdevs-cookie'])) {
               <tr/>
             <tr>
               <td>
-                Timestamp Cookie: <?php echo $controller->timestampCookie; ?>
+                Timestamp Cookie: <?php echo $controller->timestamp_cookie; ?>
               </td>
               <tr/>
             <tr>

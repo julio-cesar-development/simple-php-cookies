@@ -37,8 +37,11 @@ services:
       - db
     networks:
       - netlocal
+    volumes:
+      - ./:/var/www/html/
+      - ./000-default.conf:/etc/apache2/sites-enabled/000-default.conf
     healthcheck:
-      test: ["CMD", "nc -lk db 80"]
+      test: ["CMD", "curl", "-Iv", "http://app"]
       interval: 30s
       timeout: 1s
       retries: 1

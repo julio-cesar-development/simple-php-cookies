@@ -75,7 +75,7 @@
           throw new RuleException(null, null, $validations);
         } catch(RuleException $err) {
           var_dump($err->get_errors());
-        } catch (Exception $e) {        // ... mas não aqui.
+        } catch (Exception $e) {
           var_dump($e);
         }
       }

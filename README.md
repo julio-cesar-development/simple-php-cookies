@@ -28,39 +28,34 @@ docker-compose up -d --build db app
 > Migrations
 
 ```bash
-# with docker-compose
-docker-compose up migrations
+# docker-compose
+docker-compose up -d migrations
 
 # build the migrations image and run the migrations container
 docker image build \
   -f Dockerfile-migrations \
-  -t migrations \
-  --build-arg DB_HOST=db \
-  --build-arg DB_DATABASE=db_cookie_project \
-  --build-arg DB_USER=root \
-  --build-arg DB_PASSWORD=admin \
-  . && \
-  docker container run \
+  -t migrations .
+
+docker container run \
   --rm \
   -v ${PWD}/migrations/node_modules \
   -v ${PWD}/migrations:/migrations \
+  --env DB_HOST=db \
+  --env DB_DATABASE=db_cookie_project \
+  --env DB_USER=root \
+  --env DB_PASSWORD=admin \
   migrations
 ```
 
 > Tests
 
 ```bash
-# with docker-compose
-docker-compose up test
-
 # build the test image and run the test container
 docker image build \
   -f Dockerfile-test \
-  -t test \
-  . && \
-  docker container run \
-  --rm \
-  test
+  -t test .
+
+docker container run --rm test
 ```
 
 -----------------

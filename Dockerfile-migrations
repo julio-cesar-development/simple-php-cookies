@@ -4,10 +4,12 @@ LABEL maintainer="julio@blackdevs.com.br"
 WORKDIR /migrations/
 COPY ./migrations/ /migrations/
 
-RUN npm install
-RUN chmod +x /migrations/run.sh
+RUN npm install --silent
+RUN chmod +x /migrations/docker-entrypoint.sh
 
-ENTRYPOINT [ "/bin/bash", "-x", "/migrations/run.sh"]
+ENTRYPOINT [ "/bin/bash", "-x", "/migrations/docker-entrypoint.sh"]
+
+CMD [ "npm", "run", "start" ]
 
 # Build this image
 # docker image build -f Dockerfile-migrations -t migrations .
@@ -15,5 +17,3 @@ ENTRYPOINT [ "/bin/bash", "-x", "/migrations/run.sh"]
 # Run this image
 # docker container run --name migrations migrations
 # docker container run -it --name migrations migrations bashapp-
-
-# docker-compose run migrations bash

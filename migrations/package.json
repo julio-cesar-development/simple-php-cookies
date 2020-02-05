@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "knex": "./node_modules/knex/bin/cli.js",
-    "test": "echo ok && exit 0"
+    "test": "echo TESTS NEED TO BE IMPLEMENTED && exit 0",
+    "start": "./node_modules/knex/bin/cli.js migrate:latest && ./node_modules/knex/bin/cli.js seed:run"
   },
   "keywords": [],
   "author": "Julio Cesar <julio@blackdevs.com.br>",

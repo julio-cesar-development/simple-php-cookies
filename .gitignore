@@ -7,4 +7,5 @@ Dockerfile-ubuntu-base
 Dockerfile-apache-php-base
 Dockerfile-node-base
 .env
+*.log
 log

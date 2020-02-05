@@ -13,7 +13,7 @@ services:
       MYSQL_USER: ${DB_USER:-root}
       MYSQL_PASSWORD: ${DB_PASSWORD:-admin}
     networks:
-      - netlocal
+      - simpleapp
     # volumes:
       # - mysql-db:/var/lib/mysql
       # - ./queries.sql:/docker-entrypoint-initdb.d/data.sql
@@ -36,7 +36,7 @@ services:
     links:
       - db
     networks:
-      - netlocal
+      - simpleapp
     volumes:
       - ./:/var/www/html/
       - ./000-default.conf:/etc/apache2/sites-enabled/000-default.conf
@@ -65,20 +65,20 @@ services:
     links:
       - db
     networks:
-      - netlocal
+      - simpleapp
 
-  test:
-    container_name: test
-    build:
-      context: .
-      dockerfile: Dockerfile-test
-    restart: "no"
-    networks:
-      - netlocal
+  # test:
+  #   container_name: test
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile-test
+  #   restart: "no"
+  #   networks:
+  #     - simpleapp
 
 # volumes:
 #   mysql-db:
 
 networks:
-  netlocal:
+  simpleapp:
     driver: bridge

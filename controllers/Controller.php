@@ -5,15 +5,9 @@
   include_once('./utils/HandleHeader.php');
   include_once('./models/User.php');
 
-  require 'vendor/autoload.php';
-
-  include_once('./exceptions/RuleException.php');
-  include_once('./exceptions/RuleExceptionCode.php');
-
   use Respect\Validation\Validator as v;
 
-  use App\Rules\RuleException;
-  use App\Rules\RuleExceptionCode as ve;
+  require __DIR__ . '/../vendor/autoload.php';
 
   class Controller {
     private $db;
@@ -55,29 +49,17 @@
       $this->timestamp_cookie = (int) $this->cookie_parts[3] + (24 * 3600); // 24 hours of validity (24 * 3600)
       $this->user_codigo = (int) $this->cookie_parts[4];
 
-      $validations = [];
-
       if (!v::alpha()->validate($this->user_username)) {
-        $validations['user_username'] = [ve::INVALID_USERNAME];
+        $this->handleHeader->forbidden();
       }
       if (!v::alnum()->validate($this->user_password)) {
-        $validations['user_password'] = [ve::INVALID_PASSWORD];
+        $this->handleHeader->forbidden();
       }
       if (!v::numeric()->validate($this->timestamp_cookie)) {
-        $validations['timestamp_cookie'] = [ve::INVALID_TIMESTAMP];
+        $this->handleHeader->forbidden();
       }
       if (!v::numeric()->validate($this->user_codigo)) {
-        $validations['user_codigo'] = [ve::INVALID_USER_CODE];
-      }
-
-      if (count($validations) > 0) {
-        try {
-          throw new RuleException(null, null, $validations);
-        } catch(RuleException $err) {
-          var_dump($err->get_errors());
-        } catch (Exception $e) {
-          var_dump($e);
-        }
+        $this->handleHeader->forbidden();
       }
 
       // setting user attributes

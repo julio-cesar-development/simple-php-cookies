@@ -4,6 +4,7 @@ include_once('./controllers/Controller.php');
 
 $database = new Database();
 $db = $database->connect();
+
 $controller = new Controller($db);
 
 if (isset($_COOKIE['blackdevs-cookie'])) {
@@ -62,7 +63,8 @@ if (isset($_COOKIE['blackdevs-cookie'])) {
           <br/><br/>
           <a style="background-color: #000; color: #fff; padding: 5px 50px 5px 50px;
             text-decoration: none; border-radius: 0.3em; outline: none; cursor: pointer;"
-            href='./admin.php?acao=destruir'>
+            href='./admin.php?acao=destruir'
+          >
             Sair
           </a>
         </center>

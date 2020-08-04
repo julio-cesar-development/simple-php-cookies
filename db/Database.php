@@ -7,10 +7,10 @@
     private $conn;
 
     public function __construct() {
-      $this->host = !empty(getenv('DB_HOST')) ? getenv('DB_HOST') : '127.0.0.1';
-      $this->db_name = !empty(getenv('DB_DATABASE')) ? getenv('DB_DATABASE') : 'db_cookie_project';
-      $this->username = !empty(getenv('DB_USER')) ? getenv('DB_USER') : 'root';
-      $this->password = !empty(getenv('DB_PASSWORD')) ? getenv('DB_PASSWORD') : 'admin';
+      $this->host = !empty(getenv('MYSQL_HOST')) ? getenv('MYSQL_HOST') : '127.0.0.1';
+      $this->db_name = !empty(getenv('MYSQL_DATABASE')) ? getenv('MYSQL_DATABASE') : 'db_cookie_project';
+      $this->username = !empty(getenv('MYSQL_USER')) ? getenv('MYSQL_USER') : 'root';
+      $this->password = !empty(getenv('MYSQL_PASSWORD')) ? getenv('MYSQL_PASSWORD') : 'admin';
       $this->conn = null;
     }
 

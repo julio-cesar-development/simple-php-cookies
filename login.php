@@ -4,6 +4,7 @@ include_once('./controllers/Controller.php');
 
 $database = new Database();
 $db = $database->connect();
+
 $controller = new Controller($db);
 
 if ($_POST) {

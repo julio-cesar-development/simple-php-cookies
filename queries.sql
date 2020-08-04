@@ -1,5 +1,3 @@
-CREATE DATABASE IF NOT EXISTS db_cookie_project;
-
 USE db_cookie_project;
 
 DROP TABLE IF EXISTS User;
@@ -15,4 +13,5 @@ CREATE TABLE IF NOT EXISTS User (
 INSERT INTO
   User (username, password)
 VALUES
-  ('admin', MD5('admin'));
+  ('admin', MD5('admin'))
+;

@@ -1,7 +1,7 @@
 
 # Simple PHP login project using cookies, and unit tests with PHP Unit
 
-[![Build Status](https://badgen.net/travis/julio-cesar-development/simple-php-cookies?icon=travis)](https://travis-ci.org/julio-cesar-development/simple-php-cookies)
+[![Build Status](https://travis-ci.org/julio-cesar-development/simple-php-cookies.svg)](https://travis-ci.org/julio-cesar-development/simple-php-cookies)
 ![License](https://badgen.net/badge/license/MIT/blue)
 [![GitHub Status](https://badgen.net/github/status/julio-cesar-development/simple-php-cookies)](https://github.com/julio-cesar-development/simple-php-cookies)
 
@@ -33,17 +33,17 @@ docker-compose up -d migrations
 
 # build the migrations image and run the migrations container
 docker image build \
-  -f Dockerfile-migrations \
+  -f Migrations.Dockerfile \
   -t migrations .
 
 docker container run \
   --rm \
   -v ${PWD}/migrations/node_modules \
   -v ${PWD}/migrations:/migrations \
-  --env DB_HOST=db \
-  --env DB_DATABASE=db_cookie_project \
-  --env DB_USER=root \
-  --env DB_PASSWORD=admin \
+  --env MYSQL_HOST=db \
+  --env MYSQL_DATABASE=db_cookie_project \
+  --env MYSQL_USER=root \
+  --env MYSQL_PASSWORD=admin \
   migrations
 ```
 
@@ -52,7 +52,7 @@ docker container run \
 ```bash
 # build the test image and run the test container
 docker image build \
-  -f Dockerfile-test \
+  -f Test.Dockerfile \
   -t test .
 
 docker container run --rm test

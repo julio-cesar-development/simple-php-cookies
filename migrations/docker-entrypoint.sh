@@ -7,10 +7,10 @@ echo "$@"
 
 cd /migrations
 
-echo "DB_USER=\"${DB_USER}\" DB_PASSWORD=\"${DB_PASSWORD}\" DB_HOST=\"${DB_HOST}\" DB_DATABASE=\"${DB_DATABASE}\""
+echo "MYSQL_USER=\"${MYSQL_USER}\" MYSQL_PASSWORD=\"${MYSQL_PASSWORD}\" MYSQL_HOST=\"${MYSQL_HOST}\" MYSQL_DATABASE=\"${MYSQL_DATABASE}\""
 
-echo "creating schema ${DB_DATABASE}"
-mysql -u ${DB_USER} -p${DB_PASSWORD} -h ${DB_HOST} -e "CREATE SCHEMA IF NOT EXISTS ${DB_DATABASE}" 1> /dev/null 2>&1
+echo "creating schema ${MYSQL_DATABASE}"
+mysql -u ${MYSQL_USER} -p${MYSQL_PASSWORD} -h ${MYSQL_HOST} -e "CREATE SCHEMA IF NOT EXISTS ${MYSQL_DATABASE}" 1> /dev/null 2>&1
 
 echo "running arguments"
 exec "$@"

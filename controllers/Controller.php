@@ -10,7 +10,6 @@
   require __DIR__ . '/../vendor/autoload.php';
 
   class Controller {
-    private $db;
     public $user;
     public $isValid;
     public $handleCharacters;
@@ -26,8 +25,7 @@
     public $timestamp_cookie;
     public $timestamp_now;
 
-    public function __construct($db){
-      $this->db = $db;
+    public function __construct($db) {
       $this->handleCharacters = new HandleCharacters();
       $this->handleTimes = new HandleTimes();
       $this->randomString = new RandomString();
@@ -36,7 +34,7 @@
       $this->user = new User($db);
     }
 
-    public function validate(){
+    public function validate() {
       $this->isValid = false;
 
       $this->date = date('Y-m-d H:i:s');
@@ -69,21 +67,23 @@
 
       $result = $this->user->get_user();
 
-      if($result && sizeof($result) > 0 && $result['password'] === $this->user_password && $result['hash'] === $this->user_hash){
+      if ($result && sizeof($result) > 0
+      && $result['password'] === $this->user_password
+      && $result['hash'] === $this->user_hash) {
         $this->timestamp_now = $this->handleTimes->date_to_timestamp($this->date);
-        if($this->timestamp_now < $this->timestamp_cookie){
+        if ($this->timestamp_now < $this->timestamp_cookie) {
           $this->isValid = true;
-        }else{
+        } else {
           $this->logout();
           $this->handleHeader->expired_session();
         }
-      }else{
+      } else {
         $this->handleHeader->invalid_auth();
       }
       return $this->isValid;
     }
 
-    public function logout(){
+    public function logout() {
       unset($_COOKIE['blackdevs-cookie']);
       setcookie('blackdevs-cookie', null, time() - 3600);
       $this->isValid = false;

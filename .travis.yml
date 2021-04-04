@@ -15,8 +15,12 @@ services:
 
 before_install:
   - |
-    docker image build -f Test.Dockerfile -t juliocesarmidia/simple-app-test:latest .
+    docker image build \
+      -f Test.Dockerfile \
+      -t juliocesarmidia/simple-app-test:latest .
 
 script:
   - |
-    docker container run --rm --name simple-app-test juliocesarmidia/simple-app-test:latest
+    docker container run --rm \
+    --name simple-app-test \
+    juliocesarmidia/simple-app-test:latest

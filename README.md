@@ -1,9 +1,9 @@
 
 # Simple PHP login project using cookies, and unit tests with PHP Unit
 
-[![Build Status](https://travis-ci.org/julio-cesar-development/simple-php-cookies.svg)](https://travis-ci.org/julio-cesar-development/simple-php-cookies)
+[![Build Status](https://travis-ci.com/juliocesarscheidt/simple-php-cookies.svg)](https://travis-ci.com/juliocesarscheidt/simple-php-cookies)
 ![License](https://badgen.net/badge/license/MIT/blue)
-[![GitHub Status](https://badgen.net/github/status/julio-cesar-development/simple-php-cookies)](https://github.com/julio-cesar-development/simple-php-cookies)
+[![GitHub Status](https://badgen.net/github/status/juliocesarscheidt/simple-php-cookies)](https://github.com/juliocesarscheidt/simple-php-cookies)
 
 ## Instructions
 
@@ -73,13 +73,23 @@ CREATE DATABASE IF NOT EXISTS db_cookie_project;
 * Through terminal:
 
 ```bash
-mysql -u [mysql_user] -p[mysql_password] -h [mysql_host] -e "CREATE DATABASE IF NOT EXISTS db_cookie_project;"
+mysql \
+  -u[mysql_user] \
+  -p[mysql_password] \
+  -h[mysql_host] \
+  -P[mysql_port] \
+  -e "CREATE DATABASE IF NOT EXISTS db_cookie_project;"
 ```
 
 * Run the file queries.sql through terminal:
 
 ```bash
-mysql -u [mysql_user] -p[mysql_password] -h [mysql_host] db_cookie_project < queries.sql
+mysql \
+  -u[mysql_user] \
+  -p[mysql_password] \
+  -h[mysql_host] \
+  -P[mysql_port] \
+  db_cookie_project < queries.sql
 ```
 
 > Running application
@@ -101,7 +111,9 @@ composer install
 * Then you can run the tests
 
 ```bash
-./vendor/bin/phpunit --bootstrap vendor/autoload.php --testdox tests/
+./vendor/bin/phpunit \
+  --bootstrap vendor/autoload.php \
+  --testdox tests/
 ```
 
 ## Authors

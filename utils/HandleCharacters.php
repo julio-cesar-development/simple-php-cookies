@@ -19,7 +19,7 @@
       return $sql;
     }
 
-    public function replace_characters($str){
+    public function replace_characters($str) {
       $str = str_replace('ã', '&atilde;', $str);
       $str = str_replace('õ', '&otilde;', $str);
       $str = str_replace('ç', '&ccedil;', $str);

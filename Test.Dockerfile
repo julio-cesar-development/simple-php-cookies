@@ -11,10 +11,3 @@ COPY . /var/www/html/
 RUN composer install
 
 CMD ["./vendor/bin/phpunit", "--bootstrap", "vendor/autoload.php", "--testdox", "tests/"]
-
-# Build this image
-# docker image build -f Test.Dockerfile -t juliocesarmidia/simple-app-test:latest .
-
-# Run this image
-# docker container run --rm --name simple-app-test juliocesarmidia/simple-app-test:latest
-# docker container run --rm --name -it simple-app-test juliocesarmidia/simple-app-test:latest bash

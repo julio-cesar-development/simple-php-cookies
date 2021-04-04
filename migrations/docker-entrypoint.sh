@@ -17,8 +17,12 @@ exec "$@"
 
 echo "EXIT CODE $?"
 
-# npm run knex migrate:latest
-# npm run knex seed:run
+# => migrations
+# npm run knex migrate:make create_user
 
 # npm run knex migrate:latest
+# npm run knex migrate:rollback
+
+# => seeds
+# npm run knex seed:make user
 # npm run knex seed:run

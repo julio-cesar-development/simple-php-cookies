@@ -1,2 +1,5 @@
-vendor/
+vendor
+node_modules
+package-lock.json
+migrations/.v8flags*
 .git/

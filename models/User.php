@@ -6,7 +6,7 @@
     public $username;
     public $hash;
 
-    public function __construct($db){
+    public function __construct($db) {
       $this->conn = $db;
       $this->table = __CLASS__; // Getting class name as table name
     }
